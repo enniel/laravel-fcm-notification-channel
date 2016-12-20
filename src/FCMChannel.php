@@ -2,10 +2,10 @@
 
 namespace NotificationChannels\FCM;
 
-use NotificationChannels\FCM\Exceptions\CouldNotSendNotification;
-use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\Event;
 use LaravelFCM\Sender\FCMSender;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Notifications\Notification;
+use NotificationChannels\FCM\Exceptions\CouldNotSendNotification;
 
 class FCMChannel
 {
