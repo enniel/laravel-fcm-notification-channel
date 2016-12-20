@@ -1,0 +1,46 @@
+{
+    "name": "enniel/laravel-fcm-notification-channel",
+    "type": "library",
+    "description": "Firebase Cloud Messages Notification Driver",
+    "keywords": [
+        "fcm",
+        "firebase"
+    ],
+    "homepage": "https://github.com/enniel/laravel-fcm-notification-channel",
+    "license": "MIT",
+    "authors": [{
+        "name": "Evgeni Razumov",
+        "email": "razumov.evgeni@gmail.com"
+    }],
+    "require": {
+        "php": ">=5.5.9",
+        "brozot/laravel-fcm": "~1.2.1",
+        "illuminate/notifications": "~5.3",
+        "illuminate/support": "~5.1"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "~1.12.2",
+        "phpunit/phpunit": "4.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\FCM\\": "src",
+            "NotificationChannels\\FCM\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": [
+            "@phpcs",
+            "@phpunit"
+        ],
+        "phpcs": "php vendor/bin/php-cs-fixer --diff --dry-run -v fix",
+        "phpunit": "php vendor/bin/phpunit"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
