@@ -358,4 +358,49 @@ class FCMMessageTest extends \PHPUnit_Framework_TestCase
             throw $e;
         }
     }
+
+    /** @test */
+    public function it_construct_with_proxy_methods()
+    {
+        $message = new FCMMessage();
+        $message->setCollapseKey('collapseKey')
+                ->setContentAvailable(true)
+                ->setPriority(OptionsPriorities::high)
+                ->setDelayWhileIdle(true)
+                ->setDryRun(true)
+                ->setRestrictedPackageName('customPackageName')
+                ->setTimeToLive(200)
+                ->setTitle('test_title')
+                ->setBody('test_body')
+                ->setSound('test_sound')
+                ->setBadge('test_badge')
+                ->setTag('test_tag')
+                ->setColor('test_color')
+                ->setClickAction('test_click_action')
+                ->setBodyLocationKey('test_body_key')
+                ->setBodyLocationArgs('[ body0, body1 ]')
+                ->setTitleLocationKey('test_title_key')
+                ->setTitleLocationArgs('[ title0, title1 ]')
+                ->setIcon('test_icon');
+
+        $this->assertEquals($message->getCollapseKey(), 'collapseKey');
+        $this->assertEquals($message->isContentAvailable(), true);
+        $this->assertEquals($message->getPriority(), OptionsPriorities::high);
+        $this->assertEquals($message->isDelayWhileIdle(), true);
+        $this->assertEquals($message->isDryRun(), true);
+        $this->assertEquals($message->getRestrictedPackageName(), 'customPackageName');
+        $this->assertEquals($message->getTimeToLive(), 200);
+        $this->assertEquals($message->getTitle(), 'test_title');
+        $this->assertEquals($message->getBody(), 'test_body');
+        $this->assertEquals($message->getSound(), 'test_sound');
+        $this->assertEquals($message->getBadge(), 'test_badge');
+        $this->assertEquals($message->getTag(), 'test_tag');
+        $this->assertEquals($message->getColor(), 'test_color');
+        $this->assertEquals($message->getClickAction(), 'test_click_action');
+        $this->assertEquals($message->getBodyLocationKey(), 'test_body_key');
+        $this->assertEquals($message->getBodyLocationArgs(), '[ body0, body1 ]');
+        $this->assertEquals($message->getTitleLocationKey(), 'test_title_key');
+        $this->assertEquals($message->getTitleLocationArgs(), '[ title0, title1 ]');
+        $this->assertEquals($message->getIcon(), 'test_icon');
+    }
 }

@@ -20,7 +20,7 @@ This package is based on [brozot/laravel-fcm](https://github.com/brozot/Laravel-
 You can install this package via composer:
 
 ``` bash
-composer require enniel/laravel-fcm-notification-channel
+composer require enniel/laravel-fcm-notification-channel:1.*
 ```
 
 ## Usage
@@ -62,6 +62,46 @@ In order for your notice to know who to send messages, you must add `routeNotifi
 - `data()`: Notification data. `array` | `LaravelFCM\Message\PayloadData` | `LaravelFCM\Message\PayloadDataBuilder`
 - `options()`: Notification options. `array` | `LaravelFCM\Message\Options` | `LaravelFCM\Message\OptionsBuilder`
 - `notification()`: Notification content. `array` | `LaravelFCM\Message\PayloadNotification` | `LaravelFCM\Message\PayloadNotificationBuilder`
+
+### Proxy methods. See [brozot/laravel-fcm](https://github.com/brozot/Laravel-FCM) for more information about this methods.
+- `setDryRun`
+- `setPriority`
+- `setTimeToLive`
+- `setCollapseKey`
+- `setDelayWhileIdle`
+- `setContentAvailable`
+- `setRestrictedPackageName`
+- `isDryRun`
+- `getPriority`
+- `getTimeToLive`
+- `getCollapseKey`
+- `isDelayWhileIdle`
+- `isContentAvailable`
+- `getRestrictedPackageName`
+- `setTag`
+- `setBody`
+- `setIcon`
+- `setTitle`
+- `setSound`
+- `setBadge`
+- `setColor`
+- `setClickAction`
+- `setBodyLocationKey`
+- `setBodyLocationArgs`
+- `setTitleLocationKey`
+- `setTitleLocationArgs`
+- `getTag`
+- `getBody`
+- `getIcon`
+- `getTitle`
+- `getSound`
+- `getBadge`
+- `getColor`
+- `getClickAction`
+- `getBodyLocationKey`
+- `getBodyLocationArgs`
+- `getTitleLocationKey`
+- `getTitleLocationArgs`
 
 ## Testing
 
