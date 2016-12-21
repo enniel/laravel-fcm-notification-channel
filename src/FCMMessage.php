@@ -132,6 +132,9 @@ class FCMMessage
     public function options($options = null)
     {
         if (is_array($options)) {
+            if ($this->options && $this->options instanceof Options) {
+                $options = array_merge($this->options->toArray(), $options);
+            }
             $map = [
                 'dry_run'                 => 'setDryRun',
                 'priority'                => 'setPriority',
@@ -169,6 +172,9 @@ class FCMMessage
     public function notification($notification = null)
     {
         if (is_array($notification)) {
+            if ($this->notification && $this->notification instanceof PayloadNotification) {
+                $notification = array_merge($this->notification->toArray(), $notification);
+            }
             $map = [
                 'tag'            => 'setTag',
                 'body'           => 'setBody',
@@ -211,6 +217,9 @@ class FCMMessage
     public function data($data = null)
     {
         if (is_array($data)) {
+            if ($this->data && $this->data instanceof PayloadData) {
+                $data = array_merge($this->data->toArray(), $data);
+            }
             $data = (new PayloadDataBuilder())->setData($data);
         }
 

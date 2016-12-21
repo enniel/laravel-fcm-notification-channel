@@ -77,6 +77,37 @@ class FCMMessageTest extends \PHPUnit_Framework_TestCase
     }
 
     /** @test */
+    public function it_construct_with_options_merge_if_array()
+    {
+        $message = new FCMMessage();
+
+        $this->assertNull($message->getOptions());
+
+        $options = new OptionsBuilder();
+        $options->setCollapseKey('collapseKey')
+                ->setContentAvailable(false);
+        $message->options($options);
+        $message->options([
+            'content_available' => true,
+            'priority' => OptionsPriorities::high,
+            'delay_while_idle' => true,
+            'dry_run' => true,
+            'restricted_package_name' => 'customPackageName',
+            'time_to_live' => 200,
+        ]);
+
+        $this->assertEquals([
+            'collapse_key' => 'collapseKey',
+            'content_available' => true,
+            'priority' => OptionsPriorities::high,
+            'delay_while_idle' => true,
+            'dry_run' => true,
+            'restricted_package_name' => 'customPackageName',
+            'time_to_live' => 200,
+        ], $message->getOptions()->toArray());
+    }
+
+    /** @test */
     public function it_construct_with_options_and_throw_exception()
     {
         $this->setExpectedException(InvalidArgumentException::class);
@@ -143,6 +174,28 @@ class FCMMessageTest extends \PHPUnit_Framework_TestCase
         ]);
 
         $this->assertInstanceOf(PayloadData::class, $message->getData());
+    }
+
+    /** @test */
+    public function it_construct_with_data_merge_if_array()
+    {
+        $message = new FCMMessage();
+
+        $this->assertNull($message->getData());
+
+        $data = new PayloadDataBuilder();
+        $data->addData(['foo' => 'bar'])
+             ->addData(['baz' => true]);
+        $message->data($data);
+
+        $message->data([
+            'baz' => false,
+        ]);
+
+        $this->assertEquals([
+            'foo' => 'bar',
+            'baz' => false,
+        ], $message->getData()->toArray());
     }
 
     /** @test */
@@ -242,6 +295,46 @@ class FCMMessageTest extends \PHPUnit_Framework_TestCase
         ]);
 
         $this->assertInstanceOf(PayloadNotification::class, $message->getNotification());
+    }
+
+    /** @test */
+    public function it_construct_with_notification_merge_if_array()
+    {
+        $message = new FCMMessage();
+
+        $this->assertNull($message->getNotification());
+
+        $notification = new PayloadNotificationBuilder();
+        $notification->setTitle('test_title')
+                     ->setBody('test_body')
+                     ->setSound('test_sound')
+                     ->setBadge('test_badge')
+                     ->setTag('test_tag');
+        $message->notification($notification);
+
+        $message->notification([
+            'color' => 'test_color',
+            'click_action' => 'test_click_action',
+            'body_loc_key' => 'test_body_key',
+            'body_loc_args' => '[ body0, body1 ]',
+            'title_loc_key' => 'test_title_key',
+            'title_loc_args' => '[ title0, title1 ]',
+            'icon' => 'test_icon',
+        ]);
+        $this->assertEquals([
+            'title' => 'test_title',
+            'body' => 'test_body',
+            'badge' => 'test_badge',
+            'sound' => 'test_sound',
+            'tag' => 'test_tag',
+            'color' => 'test_color',
+            'click_action' => 'test_click_action',
+            'body_loc_key' => 'test_body_key',
+            'body_loc_args' => '[ body0, body1 ]',
+            'title_loc_key' => 'test_title_key',
+            'title_loc_args' => '[ title0, title1 ]',
+            'icon' => 'test_icon',
+        ], $message->getNotification()->toArray());
     }
 
     /** @test */
