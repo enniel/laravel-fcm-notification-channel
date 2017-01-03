@@ -22,6 +22,14 @@ You can install this package via composer:
 ``` bash
 composer require enniel/laravel-fcm-notification-channel:1.*
 ```
+Register the provider directly in your app configuration file `config/app.php`:
+``` php
+'providers' => [
+    // ...
+
+    NotificationChannels\FCM\ServiceProvider::class 
+]
+```
 
 ## Usage
 
