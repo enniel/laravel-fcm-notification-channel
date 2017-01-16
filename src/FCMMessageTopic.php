@@ -13,9 +13,9 @@ class FCMMessageTopic extends FCMMessage
     public function to($recipient)
     {
         if (! ($recipient instanceof Topics)) {
-            $type = gettype($data);
-            if (is_object($data)) {
-                $type = get_class($data);
+            $type = gettype($recipient);
+            if (is_object($recipient)) {
+                $type = get_class($recipient);
             }
 
             return new InvalidArgumentException(
