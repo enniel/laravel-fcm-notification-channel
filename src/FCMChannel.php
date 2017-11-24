@@ -3,7 +3,7 @@
 namespace NotificationChannels\FCM;
 
 use LaravelFCM\Sender\FCMSender;
-use Illuminate\Support\Facades\Event;
+use Illuminate\Events\Dispatcher;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\FCM\Exceptions\CouldNotSendNotification;
 
@@ -15,13 +15,19 @@ class FCMChannel
     protected $sender;
 
     /**
+     * @var \Illuminate\Events\Dispatcher
+     */
+    protected $events;
+
+    /**
      * Constructor.
      *
      * @param \LaravelFCM\Sender\FCMSender $sender
      */
-    public function __construct(FCMSender $sender)
+    public function __construct(FCMSender $sender, Dispatcher $events)
     {
         $this->sender = $sender;
+        $this->events = $events;
     }
 
     /**
@@ -31,12 +37,18 @@ class FCMChannel
      * @param \Illuminate\Notifications\Notification $notification
      *
      * @throws \NotificationChannels\FCM\Exceptions\CouldNotSendNotification
+     *
+     * @return \LaravelFCM\Response\DownstreamResponse|null
      */
     public function send($notifiable, Notification $notification)
     {
         $message = $notification->toFCM($notifiable);
         if ($message->recipientNotGiven()) {
-            if (! $to = $notifiable->routeNotificationFor('FCM')) {
+            $to = $notifiable->routeNotificationFor('FCM');
+            if (is_array($to) && empty($to)) {
+                return;
+            }
+            if (! $to) {
                 throw CouldNotSendNotification::missingRecipient();
             }
             $message->to($to);
@@ -50,6 +62,8 @@ class FCMChannel
 
         $response = $this->sender->{$method}(...$message->getArgs());
 
-        Event::fire(new MessageWasSended($response, $notifiable));
+        $this->events->fire(new MessageWasSended($response, $notifiable));
+
+        return $response;
     }
 }

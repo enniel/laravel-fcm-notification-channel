@@ -15,7 +15,7 @@ class MessageWasSended
     public $notifiable;
 
     /**
-     * @param  mixed  $response
+     * @param  \LaravelFCM\Response\DownstreamResponse|null  $response
      * @param  object $notifiable
      *
      * @return void

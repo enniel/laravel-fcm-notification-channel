@@ -12,7 +12,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     public function boot()
     {
         $this->app->make(ChannelManager::class)->extend('fcm', function () {
-            return new FCMChannel($this->app->make('fcm.sender'));
+            return new FCMChannel($this->app->make('fcm.sender'), $this->app->make('events'));
         });
     }
 
