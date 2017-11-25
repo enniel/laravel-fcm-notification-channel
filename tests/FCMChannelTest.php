@@ -2,16 +2,16 @@
 
 namespace NotificationChannels\FCM\Test;
 
-use LaravelFCM\Response\DownstreamResponse;
+use Mockery;
 use LaravelFCM\Sender\FCMSender;
-use NotificationChannels\FCM\FCMChannel;
-use NotificationChannels\FCM\FCMMessage;
-use NotificationChannels\FCM\MessageWasSended;
-use NotificationChannels\FCM\Exceptions\CouldNotSendNotification;
 use Illuminate\Events\Dispatcher;
 use Illuminate\Notifications\Notifiable;
+use NotificationChannels\FCM\FCMChannel;
+use NotificationChannels\FCM\FCMMessage;
 use Illuminate\Notifications\Notification;
-use Mockery;
+use LaravelFCM\Response\DownstreamResponse;
+use NotificationChannels\FCM\MessageWasSended;
+use NotificationChannels\FCM\Exceptions\CouldNotSendNotification;
 
 class FCMChannelTest extends \PHPUnit_Framework_TestCase
 {
@@ -102,7 +102,6 @@ class TestNotifiableWithInvalidRecipient
 
     public function routeNotificationForFCM()
     {
-        return;
     }
 }
 
