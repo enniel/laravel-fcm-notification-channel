@@ -27,6 +27,7 @@ class FCMMessageTest extends \PHPUnit_Framework_TestCase
                 ->setPriority(OptionsPriorities::high)
                 ->setDelayWhileIdle(true)
                 ->setDryRun(true)
+                ->setMutableContent(true)
                 ->setRestrictedPackageName('customPackageName')
                 ->setTimeToLive(200);
 
@@ -48,6 +49,7 @@ class FCMMessageTest extends \PHPUnit_Framework_TestCase
                 ->setPriority(OptionsPriorities::high)
                 ->setDelayWhileIdle(true)
                 ->setDryRun(true)
+                ->setMutableContent(true)
                 ->setRestrictedPackageName('customPackageName')
                 ->setTimeToLive(200);
 
@@ -69,6 +71,7 @@ class FCMMessageTest extends \PHPUnit_Framework_TestCase
             'priority' => OptionsPriorities::high,
             'delay_while_idle' => true,
             'dry_run' => true,
+            'mutable_content' => true,
             'restricted_package_name' => 'customPackageName',
             'time_to_live' => 200,
         ]);
@@ -92,6 +95,7 @@ class FCMMessageTest extends \PHPUnit_Framework_TestCase
             'priority' => OptionsPriorities::high,
             'delay_while_idle' => true,
             'dry_run' => true,
+            'mutable_content' => true,
             'restricted_package_name' => 'customPackageName',
             'time_to_live' => 200,
         ]);
@@ -102,6 +106,7 @@ class FCMMessageTest extends \PHPUnit_Framework_TestCase
             'priority' => OptionsPriorities::high,
             'delay_while_idle' => true,
             'dry_run' => true,
+            'mutable_content' => true,
             'restricted_package_name' => 'customPackageName',
             'time_to_live' => 200,
         ], $message->getOptions()->toArray());
@@ -230,6 +235,7 @@ class FCMMessageTest extends \PHPUnit_Framework_TestCase
         $notification = new PayloadNotificationBuilder();
         $notification->setTitle('test_title')
                      ->setBody('test_body')
+                     ->setChannelId('test_android_channel_id')
                      ->setSound('test_sound')
                      ->setBadge('test_badge')
                      ->setTag('test_tag')
@@ -256,6 +262,7 @@ class FCMMessageTest extends \PHPUnit_Framework_TestCase
         $notification = new PayloadNotificationBuilder();
         $notification->setTitle('test_title')
                      ->setBody('test_body')
+                     ->setChannelId('test_android_channel_id')
                      ->setSound('test_sound')
                      ->setBadge('test_badge')
                      ->setTag('test_tag')
@@ -282,6 +289,7 @@ class FCMMessageTest extends \PHPUnit_Framework_TestCase
         $message->notification([
             'title' => 'test_title',
             'body' => 'test_body',
+            'android_channel_id' => 'test_android_channel_id',
             'badge' => 'test_badge',
             'sound' => 'test_sound',
             'tag' => 'test_tag',
@@ -307,6 +315,7 @@ class FCMMessageTest extends \PHPUnit_Framework_TestCase
         $notification = new PayloadNotificationBuilder();
         $notification->setTitle('test_title')
                      ->setBody('test_body')
+                     ->setChannelId('test_android_channel_id')
                      ->setSound('test_sound')
                      ->setBadge('test_badge')
                      ->setTag('test_tag');
@@ -324,6 +333,7 @@ class FCMMessageTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals([
             'title' => 'test_title',
             'body' => 'test_body',
+            'android_channel_id' => 'test_android_channel_id',
             'badge' => 'test_badge',
             'sound' => 'test_sound',
             'tag' => 'test_tag',
@@ -372,6 +382,7 @@ class FCMMessageTest extends \PHPUnit_Framework_TestCase
                 ->setTimeToLive(200)
                 ->setTitle('test_title')
                 ->setBody('test_body')
+                ->setChannelId('test_android_channel_id')
                 ->setSound('test_sound')
                 ->setBadge('test_badge')
                 ->setTag('test_tag')
@@ -392,6 +403,7 @@ class FCMMessageTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($message->getTimeToLive(), 200);
         $this->assertEquals($message->getTitle(), 'test_title');
         $this->assertEquals($message->getBody(), 'test_body');
+        $this->assertEquals($message->getChannelId(), 'test_android_channel_id');
         $this->assertEquals($message->getSound(), 'test_sound');
         $this->assertEquals($message->getBadge(), 'test_badge');
         $this->assertEquals($message->getTag(), 'test_tag');

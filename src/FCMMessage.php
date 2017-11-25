@@ -22,6 +22,7 @@ class FCMMessage
         'setPriority'              => 'priority',
         'setTimeToLive'            => 'time_to_live',
         'setCollapseKey'           => 'collapse_key',
+        'setMutableContent'        => 'mutable_content',
         'setDelayWhileIdle'        => 'delay_while_idle',
         'setContentAvailable'      => 'content_available',
         'setRestrictedPackageName' => 'restricted_package_name',
@@ -35,6 +36,7 @@ class FCMMessage
         'getPriority'              => 'priority',
         'getTimeToLive'            => 'time_to_live',
         'getCollapseKey'           => 'collapse_key',
+        'isMutableContent'         => 'mutable_content',
         'isDelayWhileIdle'         => 'delay_while_idle',
         'isContentAvailable'       => 'content_available',
         'getRestrictedPackageName' => 'restricted_package_name',
@@ -46,6 +48,7 @@ class FCMMessage
     const NOTIFICATION_SETTERS = [
         'setTag'               => 'tag',
         'setBody'              => 'body',
+        'setChannelId'         => 'android_channel_id',
         'setIcon'              => 'icon',
         'setTitle'             => 'title',
         'setSound'             => 'sound',
@@ -64,6 +67,7 @@ class FCMMessage
     const NOTIFICATION_GETTERS = [
         'getTag'               => 'tag',
         'getBody'              => 'body',
+        'getChannelId'         => 'android_channel_id',
         'getIcon'              => 'icon',
         'getTitle'             => 'title',
         'getSound'             => 'sound',
@@ -84,6 +88,7 @@ class FCMMessage
         'priority'                => 'setPriority',
         'time_to_live'            => 'setTimeToLive',
         'collapse_key'            => 'setCollapseKey',
+        'mutable_content'         => 'setMutableContent',
         'delay_while_idle'        => 'setDelayWhileIdle',
         'content_available'       => 'setContentAvailable',
         'restricted_package_name' => 'setRestrictedPackageName',
@@ -93,18 +98,19 @@ class FCMMessage
      * @var array
      */
     const NOTIFICATION_MAP = [
-        'tag'            => 'setTag',
-        'body'           => 'setBody',
-        'icon'           => 'setIcon',
-        'title'          => 'setTitle',
-        'sound'          => 'setSound',
-        'badge'          => 'setBadge',
-        'color'          => 'setColor',
-        'click_action'   => 'setClickAction',
-        'body_loc_key'   => 'setBodyLocationKey',
-        'body_loc_args'  => 'setBodyLocationArgs',
-        'title_loc_key'  => 'setTitleLocationKey',
-        'title_loc_args' => 'setTitleLocationArgs',
+        'tag'                => 'setTag',
+        'body'               => 'setBody',
+        'android_channel_id' => 'setChannelId',
+        'icon'               => 'setIcon',
+        'title'              => 'setTitle',
+        'sound'              => 'setSound',
+        'badge'              => 'setBadge',
+        'color'              => 'setColor',
+        'click_action'       => 'setClickAction',
+        'body_loc_key'       => 'setBodyLocationKey',
+        'body_loc_args'      => 'setBodyLocationArgs',
+        'title_loc_key'      => 'setTitleLocationKey',
+        'title_loc_args'     => 'setTitleLocationArgs',
     ];
 
     /**
