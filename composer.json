@@ -16,6 +16,7 @@
         "php": ">=5.5.9",
         "brozot/laravel-fcm": "dev-master",
         "illuminate/notifications": "~5.3",
+        "illuminate/queue": "~5.1",
         "illuminate/support": "~5.1"
     },
     "require-dev": {
