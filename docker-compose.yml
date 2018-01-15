@@ -1,0 +1,26 @@
+version: '2'
+services:
+  test-php-5.6:
+    build:
+      context: .
+      dockerfile: Dockerfile-5.6
+    command: composer test
+    volumes:
+      - .:/app
+      - /app/vendor
+  test-php-7.0:
+    build:
+      context: .
+      dockerfile: Dockerfile-7.0
+    command: composer test
+    volumes:
+      - .:/app
+      - /app/vendor
+  test-php-7.1:
+    build:
+      context: .
+      dockerfile: Dockerfile-7.1
+    command: composer test
+    volumes:
+      - .:/app
+      - /app/vendor

@@ -7,3 +7,7 @@
 /.styleci.yml export-ignore
 /.travis.yml export-ignore
 /phpunit.xml export-ignore
+/docker-compose.yml export-ignore
+/Dockerfile-5.6 export-ignore
+/Dockerfile-7.0 export-ignore
+/Dockerfile 7.1 export-ignore
